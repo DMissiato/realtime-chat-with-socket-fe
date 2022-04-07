@@ -1,6 +1,6 @@
-name: Deploy React App to GH Pages
 
-# on event
+name: Build and Deploy to GH Pages
+
 on:
   push:
     branches: [ main ]
@@ -12,9 +12,8 @@ jobs:
 
     strategy:
       matrix:
-        # node version
         node-version: [16]
-    
+
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -22,14 +21,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    # custom code
     - run: npm ci
-    # - run: npm test
+    #- run: npm test
     - run: npm run build
-    
-    # Deploy actions
+    - run: npm run export
+    - run: touch ./out/.nojekyll
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
+        publish_dir: ./out
