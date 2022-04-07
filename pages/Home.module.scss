@@ -1,0 +1,73 @@
+
+@use '../styles/variables.scss';
+
+.wrapper
+{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: variables.$black;
+
+  form
+  {
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    label
+    {
+      color: variables.$white;
+      font-weight: 600;
+    }
+
+    input
+    {
+      padding: 15px 10px; 
+      border: none;
+      border-radius: 5px;
+    }
+
+    input[type=text]
+    {
+      margin-bottom: 20px;
+      background-color: variables.$primaryColor;
+      color: variables.$white;
+      font-weight: 600;
+      
+      &:focus
+      {
+        outline: 1px solid variables.$white;
+      }
+
+      &::placeholder
+      {
+        color: variables.$black;
+        font-weight: 400;
+      }
+
+    }
+
+    input[type=submit]
+    {
+      background-color: variables.$alternativeColor;
+      color: variables.$white;
+      outline: none;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover
+      {
+        transform: scale(1.05);
+        transition: 0.4s;
+      }
+
+    }
+
+  }
+
+}
